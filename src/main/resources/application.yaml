@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-boot-admin-server
+
+info:
+  application:
+    name: ${spring.application.name}
+    version: '@project.version@'
