@@ -5,19 +5,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.7</version>
+        <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.backbase.oss</groupId>
     <artifactId>spring-boot-admin-server</artifactId>
-    <version>2.6.7</version>
+    <version>2.7.10</version>
     <name>Backbase :: Spring Boot Admin Server</name>
     <description>Spring Boot Admin Server Service</description>
     <properties>
-        <java.version>11</java.version>
-        <spring-boot-admin.version>2.6.7</spring-boot-admin.version>
-        <spring-cloud.version>2021.0.3</spring-cloud.version>
-        <jib.version>3.2.1</jib.version>
+        <java.version>17</java.version>
+        <spring-boot-admin.version>2.7.10</spring-boot-admin.version>
+        <spring-cloud.version>2021.0.4</spring-cloud.version>
+        <jib.version>3.3.1</jib.version>
         <docker.registry.url>docker.io/backbasecs</docker.registry.url>
     </properties>
     <dependencies>
@@ -31,7 +31,15 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-kubernetes-fabric8-all</artifactId>
+            <artifactId>spring-cloud-starter-kubernetes-fabric8</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-kubernetes-fabric8-loadbalancer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -59,6 +67,15 @@
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.google.cloud.tools</groupId>
+                    <artifactId>jib-maven-plugin</artifactId>
+                    <version>${jib.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -82,7 +99,6 @@
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
-                        <version>${jib.version}</version>
                         <configuration>
                             <from>
                                 <platforms>
@@ -126,22 +142,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <profile>
-            <id>mac-m1</id>
-            <activation>
-                <os>
-                    <family>mac</family>
-                    <arch>aarch64</arch>
-                </os>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>io.netty</groupId>
-                    <artifactId>netty-resolver-dns-native-macos</artifactId>
-                    <classifier>osx-aarch_64</classifier>
-                </dependency>
-            </dependencies>
         </profile>
     </profiles>
 </project>
