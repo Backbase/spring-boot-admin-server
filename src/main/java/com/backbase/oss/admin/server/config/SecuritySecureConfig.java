@@ -34,9 +34,7 @@ public class SecuritySecureConfig {
         http.authorizeHttpRequests((authorizeRequests) -> authorizeRequests
                 .requestMatchers(new AntPathRequestMatcher(this.adminServer.path("/assets/**")))
                 .permitAll()
-                .requestMatchers(new AntPathRequestMatcher(this.adminServer.path("/actuator/info")))
-                .permitAll()
-                .requestMatchers(new AntPathRequestMatcher(adminServer.path("/actuator/health")))
+                .requestMatchers(new AntPathRequestMatcher(this.adminServer.path("/actuator/**")))
                 .permitAll()
                 .requestMatchers(new AntPathRequestMatcher(this.adminServer.path("/login")))
                 .permitAll()
