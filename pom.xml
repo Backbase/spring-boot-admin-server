@@ -5,19 +5,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.0</version>
+        <version>3.3.4</version>
         <relativePath/>
     </parent>
     <groupId>com.backbase.oss</groupId>
     <artifactId>spring-boot-admin-server</artifactId>
-    <version>3.3.2</version>
+    <version>3.3.4</version>
     <name>Backbase :: Spring Boot Admin Server</name>
     <description>Spring Boot Admin Server Service</description>
     <properties>
         <java.version>17</java.version>
-        <spring-boot-admin.version>3.3.2</spring-boot-admin.version>
-        <spring-cloud.version>2023.0.2</spring-cloud.version>
-        <jib.version>3.4.1</jib.version>
+        <spring-boot-admin.version>3.3.4</spring-boot-admin.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
+        <jib.version>3.4.4</jib.version>
         <docker.registry.url>docker.io/backbasecs</docker.registry.url>
     </properties>
     <dependencies>
@@ -81,6 +81,20 @@
                     <groupId>com.google.cloud.tools</groupId>
                     <artifactId>jib-maven-plugin</artifactId>
                     <version>${jib.version}</version>
+                    <configuration>
+                        <from>
+                            <platforms>
+                                <platform>
+                                    <architecture>amd64</architecture>
+                                    <os>linux</os>
+                                </platform>
+                                <platform>
+                                    <architecture>arm64</architecture>
+                                    <os>linux</os>
+                                </platform>
+                            </platforms>
+                        </from>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -107,20 +121,6 @@
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
-                        <configuration>
-                            <from>
-                                <platforms>
-                                    <platform>
-                                        <architecture>amd64</architecture>
-                                        <os>linux</os>
-                                    </platform>
-                                    <platform>
-                                        <architecture>arm64</architecture>
-                                        <os>linux</os>
-                                    </platform>
-                                </platforms>
-                            </from>
-                        </configuration>
                         <executions>
                             <execution>
                                 <id>push-version-tag</id>
