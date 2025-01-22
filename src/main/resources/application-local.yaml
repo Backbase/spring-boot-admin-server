@@ -3,6 +3,10 @@ spring:
     user:
       name: admin
       password: admin
+  boot:
+    admin:
+      ui:
+        hide-instance-url: true
 
 eureka:
   client:
