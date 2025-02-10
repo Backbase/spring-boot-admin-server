@@ -7,6 +7,8 @@ spring:
     admin:
       ui:
         hide-instance-url: true
+      hazelcast:
+        start-embedded: false
 
 eureka:
   client:
@@ -18,3 +20,23 @@ eureka:
 
 server:
   port: 9080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    enabled-by-default: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+    configprops:
+      show-values: ALWAYS
+    env:
+      show-values: ALWAYS
+      post:
+        enabled: true
+
+logging:
+  level:
+    com.hazelcast: DEBUG
