@@ -6,7 +6,7 @@ spring:
   boot:
     admin:
       ui:
-        hide-instance-url: true
+        hide-instance-url: false  # Show URLs in local development
       hazelcast:
         start-embedded: false
 
@@ -14,19 +14,13 @@ eureka:
   client:
     enabled: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: host.docker.internal
-
-server:
-  port: 9080
+      defaultZone: http://registry:8080/eureka
 
 management:
   endpoints:
     web:
       exposure:
         include: '*'
-    enabled-by-default: true
   endpoint:
     health:
       show-details: ALWAYS
@@ -36,7 +30,3 @@ management:
       show-values: ALWAYS
       post:
         enabled: true
-
-logging:
-  level:
-    com.hazelcast: DEBUG
