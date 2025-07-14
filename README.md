@@ -19,13 +19,15 @@ mvn clean package -Pjib-push
     environment:
       eureka.client.enabled: true
       eureka.client.serviceUrl.defaultZone: http://registry:8080/eureka
-      eureka.client.register-with-eureka: false
+      eureka.instance.non-secure-port: 8080
+      eureka.instance.prefer-ip-address: true
       spring.security.user.name: admin
       spring.security.user.password: admin
       spring.boot.admin.ui.hide-instance-url: true
       spring.boot.admin.hazelcast.start-embedded: false
-    links:
-      - registry
+    depends_on:
+      registry:
+        condition: service_healthy
 ```
 
 2. Open the admin web console at at http://localhost:9000/
