@@ -30,5 +30,5 @@ mvn clean package -Pjib-push
         condition: service_healthy
 ```
 
-2. Open the admin web console at at http://localhost:9000/
+2. Open the admin web console at at http://localhost:9000/ and login with "admin/admin"
 
