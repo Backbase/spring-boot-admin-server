@@ -1,14 +1,14 @@
 # Spring Boot Admin Server
 
 ### Packaging the image and publishing it to official Docker Registry 
+> **Note:** This is for contributor of the repo to push images to the [official Docker Registry](https://docker.io/backbasecs) which requires the necessary permissions. 
 
 ```shell
 mvn clean package -Pjib-push
 ```
 
-> **Note:** Pushing images to the [official Docker Registry](https://docker.io/backbasecs) requires the necessary permissions. 
-
 ### Deploy the admin server to monitor [local backend environment](https://github.com/Backbase/local-backend-setup)
+> **Note:** Everyone having a local bankend environment could adopt the admin server by following the instrucitons below
 
 1. Adding the following docker compose snippet to your docker compose file. 
 ```yaml
@@ -31,3 +31,4 @@ mvn clean package -Pjib-push
 ```
 
 2. Open the admin web console at at http://localhost:9000/
+
